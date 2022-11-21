@@ -7,7 +7,7 @@
 </p>
 
 # Server-Base-Express-Sockets
-Servidor base creado en expres con sockets para podert ser reutilizado según necesidades.
+Servidorde la app de chat en Angular, creado en expres con sockets para poder enviar mensajes entre dstinos usuarios.
 
 # Instrucciones
 
