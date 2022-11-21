@@ -1,4 +1,4 @@
-import { Socket } from 'socket.io';
+import { Socket, Server } from 'socket.io';
 import colors from 'colors'
 
 export const connect = () => {
@@ -17,11 +17,13 @@ export const disconnect = (client: Socket) => {
 
 }
 
-export const message = (client: Socket) => {
+export const message = (client: Socket, io: Server) => {
 
     client.on('message', (payload: { to: string, msg: string }) => {
 
         console.log(colors.magenta(`[Sockets] Message: (${payload.to}) => "${payload.msg}"`));
+
+        io.emit('new-message', payload);
 
     });
 
