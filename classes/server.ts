@@ -3,6 +3,7 @@ import { Server as ioServer } from 'socket.io';
 import http from 'http';
 import colors from 'colors'
 import { SERVER_PORT } from '../global/enviroment';
+import * as socket from '../sockets/sockets';
 
 export default class Server {
 
@@ -49,11 +50,7 @@ export default class Server {
 
             console.log(colors.magenta('[Servers] Sockets: Client =>'), colors.green('(connected)'));
 
-            client.on('disconnect', () => {
-
-                console.log(colors.magenta('[Servers] Sockets: Client =>'), colors.red('(disconnected)'));
-
-            })
+            socket.disconnect(client);
 
         })
 
