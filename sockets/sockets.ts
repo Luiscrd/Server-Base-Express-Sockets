@@ -43,7 +43,7 @@ export const configUser = (client: Socket, io: Server) => {
 
     client.on('config-user', (payload: { name: string, img: string }, callback: Function) => {
 
-        connectedUsers.updateName(client.id, payload.name)
+        connectedUsers.updateName(client.id, payload.name, payload.img)
 
         console.log(colors.magenta(`[Sockets] User config: ${payload.name}`));
 

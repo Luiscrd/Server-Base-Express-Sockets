@@ -19,13 +19,15 @@ export class ListUsers {
 
     }
 
-    public updateName(id: string, name: string) {
+    public updateName(id: string, name: string, img: string) {
 
         this.list.forEach((user: User) => {
 
             if (user.id === id) {
 
                 user.name = name;
+
+                user.img = img;
 
             }
             
@@ -34,7 +36,7 @@ export class ListUsers {
 
         console.log(colors.yellow(`[LisUser] ${name} =>`), colors.green('(update)'));
 
-        // console.log(this.list);
+        console.log(this.list);
 
     }
 
