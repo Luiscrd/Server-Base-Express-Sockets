@@ -5,6 +5,8 @@ import colors from 'colors'
 import { SERVER_PORT } from '../global/enviroment';
 
 export default class Server {
+
+    private static _instance: Server;
     
     public app: express.Application;
 
@@ -14,7 +16,7 @@ export default class Server {
 
     private httpServer: http.Server;
 
-    constructor() {
+    private constructor() {
         
         this.app = express();
 
@@ -26,6 +28,12 @@ export default class Server {
 
         this.listenSockets();
 
+    }
+
+    public static get instance() {
+
+        return this._instance || (this._instance = new this());
+        
     }
 
     private listenSockets() {
