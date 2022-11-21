@@ -1,7 +1,4 @@
 <p align="center">
-  <img alt="Angular" src="https://cdn.pixabay.com/photo/2015/04/23/17/41/node-js-736399_960_720.png" width="500">
-</p>
-<p align="center">
   <img alt="Angular" src="https://cdn-images-1.medium.com/max/1200/1*hYfdBkfKgvtMoDcqk_LjWA.png" width="500">
 </p>
 <p align="center">
