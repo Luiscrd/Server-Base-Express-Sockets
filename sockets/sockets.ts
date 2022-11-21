@@ -31,7 +31,7 @@ export const message = (client: Socket, io: Server) => {
 
 export const configUser = (client: Socket, io: Server) => {
 
-    client.on('config-user', (payload: { name: string }, callback: Function) => {
+    client.on('config-user', (payload: { name: string, img: string }, callback: Function) => {
 
         console.log(colors.magenta(`[Sockets] User config: ${payload.name}`));
 
@@ -39,7 +39,8 @@ export const configUser = (client: Socket, io: Server) => {
 
         callback({
             ok: true,
-            msg: `User ${payload.name}, configurado`
+            msg: `User ${payload.name}, configurado`,
+            img: payload.img
         })
 
     });
