@@ -48,7 +48,11 @@ export default class Server {
 
         this.io.on('connection', client => {
 
-            console.log(colors.magenta('[Servers] Sockets: Client =>'), colors.green('(connected)'));
+            socket.connect();
+
+            // console.log(colors.magenta('[Servers] Sockets: Client =>'), colors.green('(connected)'));
+
+            socket.message(client);
 
             socket.disconnect(client);
 
