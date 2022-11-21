@@ -28,3 +28,20 @@ export const message = (client: Socket, io: Server) => {
     });
 
 }
+
+export const configUser = (client: Socket, io: Server) => {
+
+    client.on('config-user', (payload: { name: string }, callback: Function) => {
+
+        console.log(colors.magenta(`[Sockets] User config: ${payload.name}`));
+
+        // io.emit('new-message', payload);
+
+        callback({
+            ok: true,
+            msg: `User ${payload.name}, configurado`
+        })
+
+    });
+
+}
