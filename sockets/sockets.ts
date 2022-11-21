@@ -1,7 +1,15 @@
 import { Socket, Server } from 'socket.io';
 import colors from 'colors'
+import { ListUsers } from '../classes/list-users';
+import { User } from '../classes/user';
 
-export const connect = () => {
+export const connectedUsers = new ListUsers();
+
+export const connectClient = (client: Socket) => {
+
+    const user = new User(client.id);
+
+    connectedUsers.add(user);
 
     console.log(colors.magenta('[Sockets] Client =>'), colors.green('(connected)'));
 
@@ -10,6 +18,8 @@ export const connect = () => {
 export const disconnect = (client: Socket) => {
 
     client.on('disconnect', () => {
+
+        connectedUsers.deleteUser(client.id);
 
         console.log(colors.magenta('[Sockets] Client =>'), colors.red('(disconnected)'));
 
@@ -32,6 +42,8 @@ export const message = (client: Socket, io: Server) => {
 export const configUser = (client: Socket, io: Server) => {
 
     client.on('config-user', (payload: { name: string, img: string }, callback: Function) => {
+
+        connectedUsers.updateName(client.id, payload.name)
 
         console.log(colors.magenta(`[Sockets] User config: ${payload.name}`));
 

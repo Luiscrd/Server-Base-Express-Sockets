@@ -1,3 +1,4 @@
+import colors from 'colors';
 import { User } from './user';
 
 export class ListUsers {
@@ -10,9 +11,11 @@ export class ListUsers {
 
         this.list.push(user);
 
-        console.log(this.list);
+        console.log(colors.yellow(`[LisUser] ${user.id} =>`), colors.green('(add)'));
 
-        return user;
+        // console.log(this.list);
+
+        // return user;
 
     }
 
@@ -25,12 +28,13 @@ export class ListUsers {
                 user.name = name;
 
             }
+            
 
         })
 
-        console.log('Actualizando Usuario');
+        console.log(colors.yellow(`[LisUser] ${name} =>`), colors.green('(update)'));
 
-        console.log(this.list);
+        // console.log(this.list);
 
     }
 
@@ -57,6 +61,11 @@ export class ListUsers {
         const userTemp = this.getUser(id);
 
         this.list = this.list.filter((user: User) => user.id !== user.id);
+
+        console.log(colors.yellow(`[LisUser] ${id} =>`), colors.red('(deleted)'));
+
+        return userTemp;
+        
     }
 
 }
