@@ -24,7 +24,12 @@ export default class Server {
 
         this.httpServer = new http.Server(this.app);
 
-        this.io = new ioServer(this.httpServer);
+        this.io = new ioServer(this.httpServer, {
+            cors: {
+                origin: true,
+                credentials: true
+            }
+        });
 
         this.listenSockets();
 
@@ -33,7 +38,7 @@ export default class Server {
     public static get instance() {
 
         return this._instance || (this._instance = new this());
-        
+
     }
 
     private listenSockets() {
@@ -42,7 +47,13 @@ export default class Server {
 
         this.io.on('connection', client => {
 
-            console.log(colors.magenta('[Servers] Sockets: New Client connected'));
+            console.log(colors.magenta('[Servers] Sockets: Client =>'), colors.green('(connected)'));
+
+            client.on('disconnect', () => {
+
+                console.log(colors.magenta('[Servers] Sockets: Client =>'), colors.red('(disconnected)'));
+
+            })
 
         })
 
