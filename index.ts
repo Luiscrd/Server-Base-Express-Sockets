@@ -19,6 +19,6 @@ server.app.use('/', router);
 
 server.start(() => {
 
-    console.log(colors.blue('[Indexts] Server run Ok'));
+    console.log(colors.blue('[Indexts] Server: run Ok'));
     
 })
