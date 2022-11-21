@@ -19,9 +19,9 @@ export const disconnect = (client: Socket) => {
 
 export const message = (client: Socket, io: Server) => {
 
-    client.on('message', (payload: { to: string, msg: string }) => {
+    client.on('message', (payload: { to: string, msg: string, date: string }) => {
 
-        console.log(colors.magenta(`[Sockets] Message: (${payload.to}) => "${payload.msg}"`));
+        console.log(colors.magenta(`[Sockets] Message: (${payload.to}) -${payload.date}- => "${payload.msg}"`));
 
         io.emit('new-message', payload);
 
