@@ -67,7 +67,7 @@ export const seendUsers = (client: Socket, io: Server) => {
 
     client.on('seend-users', () => {
 
-        io.emit('actived-users', connectedUsers.getList());
+        io.to(client.id).emit('actived-users', connectedUsers.getList());
 
     });
 
