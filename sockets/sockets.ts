@@ -5,7 +5,7 @@ import { User } from '../classes/user';
 
 export const connectedUsers = new ListUsers();
 
-export const connectClient = (client: Socket) => {
+export const connectClient = (client: Socket, io: Server) => {
 
     const user = new User(client.id);
 
@@ -15,13 +15,15 @@ export const connectClient = (client: Socket) => {
 
 }
 
-export const disconnect = (client: Socket) => {
+export const disconnect = (client: Socket, io: Server) => {
 
     client.on('disconnect', () => {
 
         connectedUsers.deleteUser(client.id);
-
+     
         console.log(colors.magenta('[Sockets] Client =>'), colors.red('(disconnected)'));
+
+        io.emit('actived-users', connectedUsers.getList());
 
     });
 
@@ -49,11 +51,23 @@ export const configUser = (client: Socket, io: Server) => {
 
         // io.emit('new-message', payload);
 
+        io.emit('actived-users', connectedUsers.getList());
+
         callback({
             ok: true,
             msg: `User ${payload.name}, configurado`,
             img: payload.img
         })
+
+    });
+
+}
+
+export const seendUsers = (client: Socket, io: Server) => {
+
+    client.on('seend-users', () => {
+
+        io.emit('actived-users', connectedUsers.getList());
 
     });
 

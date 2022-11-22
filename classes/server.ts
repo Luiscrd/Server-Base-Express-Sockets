@@ -48,13 +48,15 @@ export default class Server {
 
         this.io.on('connection', client => {
 
-            socket.connectClient(client);
+            socket.connectClient(client, this.io);
+
+            socket.seendUsers(client, this.io);
 
             socket.configUser(client, this.io);
 
             socket.message(client, this.io);
 
-            socket.disconnect(client);
+            socket.disconnect(client, this.io);
 
 
         })

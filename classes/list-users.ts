@@ -31,7 +31,6 @@ export class ListUsers {
 
             }
             
-
         })
 
         console.log(colors.yellow(`[LisUser] ${name} =>`), colors.green('(update)'));
@@ -42,7 +41,7 @@ export class ListUsers {
 
     public getList() {
 
-        return this.list;
+        return this.list.filter(user => user.name !== 'sin-nombre');
 
     }
 
@@ -62,7 +61,7 @@ export class ListUsers {
 
         const userTemp = this.getUser(id);
 
-        this.list = this.list.filter((user: User) => user.id !== user.id);
+        this.list = this.list.filter((user: User) => user.id !== id);
 
         console.log(colors.yellow(`[LisUser] ${id} =>`), colors.red('(deleted)'));
 
