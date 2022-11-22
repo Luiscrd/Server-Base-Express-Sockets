@@ -56,7 +56,8 @@ export const configUser = (client: Socket, io: Server) => {
         callback({
             ok: true,
             msg: `User ${payload.name}, configurado`,
-            img: payload.img
+            img: payload.img,
+            id: client.id
         })
 
     });
